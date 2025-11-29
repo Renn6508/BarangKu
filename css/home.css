@@ -42,33 +42,6 @@ body {
   letter-spacing: 1px;
 }
 
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: white;
-  background: rgba(255,255,255,0.1);
-  padding: 8px 15px;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.header-right:hover {
-  background: rgba(255,255,255,0.2);
-}
-
-.user-avatar {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  border: 2px solid white;
-}
-
-.header-right span {
-  font-weight: 500;
-}
-
 /* Dashboard Container */
 .dashboard-container {
   display: flex;

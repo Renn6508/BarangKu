@@ -6,20 +6,53 @@
     <title>Barangku - Stock Berjalan</title>
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/stock-berjalan.css">
+    <script src="../js/dropdown.js"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
+<!-- Header -->
     <header class="header">
         <div class="header-left">
             <i class="fas fa-home"></i>
             <h1>BARANGKU</h1>
         </div>
         <div class="header-right">
-            <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
-            <span>USER</span>
-            <i class="fas fa-chevron-down"></i>
+            <div class="profile-dropdown">
+                <div class="profile-trigger" onclick="toggleProfileDropdown()">
+                    <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                    <span>USER</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="dropdown-menu" id="profileDropdown">
+                    <div class="dropdown-header">
+                        <img src="https://via.placeholder.com/50" alt="User" class="dropdown-avatar">
+                        <div class="dropdown-user-info">
+                            <h4>John Doe</h4>
+                            <p>Administrator</p>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="profile.html" class="dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <span>Profile Saya</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Pengaturan</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifikasi</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item logout" onclick="handleLogout(event)">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Keluar</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
 
