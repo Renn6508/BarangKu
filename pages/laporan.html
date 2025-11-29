@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangku - Laporan</title>
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/laporan.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <i class="fas fa-home"></i>
+            <h1>BARANGKU</h1>
+        </div>
+        <div class="header-right">
+            <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+            <span>USER</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="home.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="barang.html" class="nav-item">
+                    <i class="fas fa-box"></i>
+                    <span>Barang</span>
+                </a>
+                <a href="stock-berjalan.html" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Stock Berjalan</span>
+                </a>
+                <a href="category.html" class="nav-item">
+                    <i class="fas fa-tags"></i>
+                    <span>Kategori</span>
+                </a>
+                <a href="laporan.html" class="nav-item active">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Laporan</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+            <button class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h2 class="page-title">Laporan</h2>
+                <button class="btn-primary" onclick="generateReport()">
+                    <i class="fas fa-file-export"></i> Export
+                </button>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <h3>Filter Laporan</h3>
+                <div class="filter-grid">
+                    <div class="filter-item">
+                        <label>Tipe Laporan</label>
+                        <select id="reportType" onchange="updateReport()">
+                            <option value="stock">Laporan Stok Barang</option>
+                            <option value="transaction">Laporan Transaksi</option>
+                            <option value="profit">Laporan Keuntungan</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label>Dari Tanggal</label>
+                        <input type="date" id="startDate" onchange="updateReport()">
+                    </div>
+                    <div class="filter-item">
+                        <label>Sampai Tanggal</label>
+                        <input type="date" id="endDate" onchange="updateReport()">
+                    </div>
+                    <div class="filter-item">
+                        <label>Kategori</label>
+                        <select id="categoryFilter" onchange="updateReport()">
+                            <option value="">Semua Kategori</option>
+                            <option value="Elektronik">Elektronik</option>
+                            <option value="Aksesoris">Aksesoris</option>
+                            <option value="Furniture">Furniture</option>
+                            <option value="Alat Tulis">Alat Tulis</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Summary -->
+            <div class="summary-cards">
+                <div class="summary-card blue">
+                    <div class="summary-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h4>Total Barang</h4>
+                        <p class="summary-value">1,245</p>
+                        <span class="summary-label">Item</span>
+                    </div>
+                </div>
+                <div class="summary-card green">
+                    <div class="summary-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h4>Barang Masuk</h4>
+                        <p class="summary-value">342</p>
+                        <span class="summary-label">Transaksi</span>
+                    </div>
+                </div>
+                <div class="summary-card red">
+                    <div class="summary-icon">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h4>Barang Keluar</h4>
+                        <p class="summary-value">287</p>
+                        <span class="summary-label">Transaksi</span>
+                    </div>
+                </div>
+                <div class="summary-card yellow">
+                    <div class="summary-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h4>Total Nilai</h4>
+                        <p class="summary-value">Rp 125M</p>
+                        <span class="summary-label">Nilai Stok</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Table -->
+            <div class="table-card">
+                <div class="table-header">
+                    <h3 id="reportTitle">Laporan Stok Barang</h3>
+                    <div class="table-actions">
+                        <button class="btn-icon-text" onclick="printReport()">
+                            <i class="fas fa-print"></i> Print
+                        </button>
+                        <button class="btn-icon-text" onclick="exportPDF()">
+                            <i class="fas fa-file-pdf"></i> PDF
+                        </button>
+                        <button class="btn-icon-text" onclick="exportExcel()">
+                            <i class="fas fa-file-excel"></i> Excel
+                        </button>
+                    </div>
+                </div>
+
+                <table class="data-table" id="reportTable">
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>KODE BARANG</th>
+                            <th>NAMA BARANG</th>
+                            <th>KATEGORI</th>
+                            <th>STOK</th>
+                            <th>HARGA BELI</th>
+                            <th>HARGA JUAL</th>
+                            <th>TOTAL NILAI</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>BRG001</td>
+                            <td>Laptop Asus ROG</td>
+                            <td>Elektronik</td>
+                            <td>25</td>
+                            <td>Rp 12.000.000</td>
+                            <td>Rp 13.500.000</td>
+                            <td>Rp 300.000.000</td>
+                            <td><span class="status-badge aman">Aman</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>BRG002</td>
+                            <td>Mouse Logitech</td>
+                            <td>Aksesoris</td>
+                            <td>5</td>
+                            <td>Rp 150.000</td>
+                            <td>Rp 200.000</td>
+                            <td>Rp 750.000</td>
+                            <td><span class="status-badge menipis">Menipis</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>BRG003</td>
+                            <td>Keyboard Mechanical</td>
+                            <td>Aksesoris</td>
+                            <td>8</td>
+                            <td>Rp 500.000</td>
+                            <td>Rp 650.000</td>
+                            <td>Rp 4.000.000</td>
+                            <td><span class="status-badge menipis">Menipis</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>BRG004</td>
+                            <td>Monitor LG 24"</td>
+                            <td>Elektronik</td>
+                            <td>25</td>
+                            <td>Rp 1.800.000</td>
+                            <td>Rp 2.200.000</td>
+                            <td>Rp 45.000.000</td>
+                            <td><span class="status-badge aman">Aman</span></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>BRG005</td>
+                            <td>Headset Gaming</td>
+                            <td>Aksesoris</td>
+                            <td>0</td>
+                            <td>Rp 300.000</td>
+                            <td>Rp 400.000</td>
+                            <td>Rp 0</td>
+                            <td><span class="status-badge habis">Habis</span></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td colspan="7"><strong>TOTAL</strong></td>
+                            <td><strong>Rp 349.750.000</strong></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <span class="pagination-info">Menampilkan 1-5 dari 5 data</span>
+                    <div class="pagination-buttons">
+                        <button class="btn-page" disabled>Previous</button>
+                        <button class="btn-page active">1</button>
+                        <button class="btn-page" disabled>Next</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Barangku. All rights reserved.</p>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/laporan.js"></script>
+</body>
+</html>

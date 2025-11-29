@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangku - Kategori</title>
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/category.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <i class="fas fa-home"></i>
+            <h1>BARANGKU</h1>
+        </div>
+        <div class="header-right">
+            <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+            <span>USER</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="home.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="barang.html" class="nav-item">
+                    <i class="fas fa-box"></i>
+                    <span>Barang</span>
+                </a>
+                <a href="stock-berjalan.html" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Stock Berjalan</span>
+                </a>
+                <a href="category.html" class="nav-item active">
+                    <i class="fas fa-tags"></i>
+                    <span>Kategori</span>
+                </a>
+                <a href="laporan.html" class="nav-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Laporan</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+            <button class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h2 class="page-title">Kategori</h2>
+                <button class="btn-primary" onclick="openAddModal()">
+                    <i class="fas fa-plus"></i> Tambah Kategori
+                </button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Cari kategori..." onkeyup="searchTable()">
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-card">
+                <table class="data-table" id="categoryTable">
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>KATEGORI</th>
+                            <th>ITEM</th>
+                            <th>AKSI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Elektronik</td>
+                            <td>45</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-edit" onclick="editCategory(1, 'Elektronik', 45)" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete(1, 'Elektronik')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Aksesoris</td>
+                            <td>32</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-edit" onclick="editCategory(2, 'Aksesoris', 32)" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete(2, 'Aksesoris')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Furniture</td>
+                            <td>18</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-edit" onclick="editCategory(3, 'Furniture', 18)" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete(3, 'Furniture')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Alat Tulis</td>
+                            <td>28</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-edit" onclick="editCategory(4, 'Alat Tulis', 28)" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete(4, 'Alat Tulis')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Makanan & Minuman</td>
+                            <td>52</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-edit" onclick="editCategory(5, 'Makanan & Minuman', 52)" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete(5, 'Makanan & Minuman')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Pakaian</td>
+                            <td>36</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-edit" onclick="editCategory(6, 'Pakaian', 36)" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete(6, 'Pakaian')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Kesehatan</td>
+                            <td>24</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-edit" onclick="editCategory(7, 'Kesehatan', 24)" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete(7, 'Kesehatan')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Lainnya</td>
+                            <td>15</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-edit" onclick="editCategory(8, 'Lainnya', 15)" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete(8, 'Lainnya')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <span class="pagination-info">Menampilkan 1-8 dari 8 kategori</span>
+                    <div class="pagination-buttons">
+                        <button class="btn-page" disabled>Previous</button>
+                        <button class="btn-page active">1</button>
+                        <button class="btn-page" disabled>Next</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Barangku. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal Add/Edit Category -->
+    <div id="categoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Tambah Kategori</h3>
+                <span class="close" onclick="closeCategoryModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="categoryForm" onsubmit="handleSubmit(event)">
+                    <input type="hidden" id="categoryId">
+                    <div class="form-group">
+                        <label for="categoryName">Nama Kategori <span class="required">*</span></label>
+                        <input type="text" id="categoryName" placeholder="Masukkan nama kategori" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryDesc">Deskripsi</label>
+                        <textarea id="categoryDesc" rows="3" placeholder="Deskripsi kategori (opsional)"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeCategoryModal()">Batal</button>
+                <button class="btn-primary" onclick="saveCategory()">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Delete Confirmation -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Konfirmasi Hapus</h3>
+                <span class="close" onclick="closeDeleteModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <i class="fas fa-exclamation-triangle warning-icon"></i>
+                <p>Apakah Anda yakin ingin menghapus kategori <strong id="categoryName"></strong>?</p>
+                <p class="warning-text">Data yang dihapus tidak dapat dikembalikan!</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeDeleteModal()">Batal</button>
+                <button class="btn-danger" onclick="deleteCategory()">Hapus</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/category.js"></script>
+</body>
+</html>
