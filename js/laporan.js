@@ -136,7 +136,7 @@ function updateSummaryCards() {
         }
     }
 
-    // Update cards (in real app)
+    // Update cards (in real app)   
     console.log('Summary:', {
         totalItems,
         totalValue,

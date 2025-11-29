@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangku - Profile</title>
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <i class="fas fa-home"></i>
+            <h1>BARANGKU</h1>
+        </div>
+        <div class="header-right">
+            <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+            <span>USER</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="home.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="barang.html" class="nav-item">
+                    <i class="fas fa-box"></i>
+                    <span>Barang</span>
+                </a>
+                <a href="stock-berjalan.html" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Stock Berjalan</span>
+                </a>
+                <a href="category.html" class="nav-item">
+                    <i class="fas fa-tags"></i>
+                    <span>Kategori</span>
+                </a>
+                <a href="laporan.html" class="nav-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Laporan</span>
+                </a>
+                <a href="profile.html" class="nav-item active">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+            <button class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h2 class="page-title">Edit Profil</h2>
+            </div>
+
+            <!-- Profile Form -->
+            <div class="profile-container">
+                <form id="profileForm" onsubmit="handleSubmit(event)">
+                    <!-- Profile Info Section -->
+                    <div class="section">
+                        <h3 class="section-title">Rincian Formulir</h3>
+                        
+                        <div class="profile-content">
+                            <!-- Avatar Upload -->
+                            <div class="avatar-section">
+                                <div class="avatar-wrapper">
+                                    <div class="avatar-circle" id="avatarPreview">
+                                        <i class="fas fa-camera"></i>
+                                    </div>
+                                    <button type="button" class="avatar-edit-btn" onclick="document.getElementById('avatarInput').click()">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                    <input type="file" id="avatarInput" accept="image/*" onchange="handleAvatarChange(event)" style="display: none;">
+                                </div>
+                            </div>
+
+                            <!-- Form Fields -->
+                            <div class="form-fields">
+                                <div class="form-group">
+                                    <input type="text" id="fullName" name="fullName" placeholder="Nama Lengkap" value="John Doe">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" id="username" name="username" placeholder="Nama Panggilan" value="johndoe">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" id="address" name="address" placeholder="Alamat Rumah" value="Jl. Contoh No. 123">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role Section -->
+                    <div class="section">
+                        <h3 class="section-label">Role</h3>
+                        <div class="form-group">
+                            <select id="role" name="role">
+                                <option value="Administrator">Administrator</option>
+                                <option value="Manager">Manager</option>
+                                <option value="Staff">Staff</option>
+                                <option value="User">User</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Password Section -->
+                    <div class="section">
+                        <h3 class="section-title">Rincian Formulir</h3>
+                        
+                        <div class="password-grid">
+                            <div class="form-group">
+                                <label>Kata Sandi Lama</label>
+                                <div class="password-input">
+                                    <input type="password" id="oldPassword" name="oldPassword" placeholder="Password">
+                                    <button type="button" class="toggle-password" onclick="togglePassword('oldPassword')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Kata Sandi Baru</label>
+                                <div class="password-input">
+                                    <input type="password" id="newPassword" name="newPassword" placeholder="Password">
+                                    <button type="button" class="toggle-password" onclick="togglePassword('newPassword')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Konfirmasi Kata Sandi</label>
+                                <div class="password-input">
+                                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Password">
+                                    <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" onclick="cancelEdit()">
+                            <i class="fas fa-times"></i> Batalkan
+                        </button>
+                        <button type="submit" class="btn-save">
+                            <i class="fas fa-save"></i> Simpan Produk
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Barangku. All rights reserved.</p>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/profile.js"></script>
+</body>
+</html>
