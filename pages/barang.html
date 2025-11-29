@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangku - Data Barang</title>
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/barang.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <i class="fas fa-home"></i>
+            <h1>BARANGKU</h1>
+        </div>
+        <div class="header-right">
+            <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+            <span>USER</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="home.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="barang.html" class="nav-item active">
+                    <i class="fas fa-box"></i>
+                    <span>Barang</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Stock Berjalan</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-tags"></i>
+                    <span>Kategori</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Laporan</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+            <button class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h2 class="page-title">Barang</h2>
+                <button class="btn-primary" onclick="window.location.href='add-barang.html'">
+                    <i class="fas fa-plus"></i> Tambah Barang
+                </button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Cari barang..." onkeyup="searchTable()">
+                </div>
+                <select class="filter-select" id="categoryFilter" onchange="filterByCategory()">
+                    <option value="">Semua Kategori</option>
+                    <option value="Elektronik">Elektronik</option>
+                    <option value="Aksesoris">Aksesoris</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Alat Tulis">Alat Tulis</option>
+                </select>
+            </div>
+
+            <!-- Table -->
+            <div class="table-card">
+                <table class="data-table" id="barangTable">
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>KODE BARANG</th>
+                            <th>NAMA BARANG</th>
+                            <th>KATEGORI</th>
+                            <th>STOK</th>
+                            <th>SATUAN</th>
+                            <th>HARGA BELI</th>
+                            <th>HARGA JUAL</th>
+                            <th>KETERANGAN</th>
+                            <th>AKSI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>BRG001</td>
+                            <td>Laptop Asus ROG</td>
+                            <td>Elektronik</td>
+                            <td>0</td>
+                            <td>Unit</td>
+                            <td>Rp 12.000.000</td>
+                            <td>Rp 13.500.000</td>
+                            <td>Habis</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-info" onclick="viewItem(1)" title="Lihat">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon btn-edit" onclick="editItem(1)" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete(1, 'Laptop Asus ROG')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>BRG002</td>
+                            <td>Mouse Logitech</td>
+                            <td>Aksesoris</td>
+                            <td>5</td>
+                            <td>Unit</td>
+                            <td>Rp 150.000</td>
+                            <td>Rp 200.000</td>
+                            <td>Menipis</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-info" onclick="viewItem(2)" title="Lihat">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon btn-edit" onclick="editItem(2)" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete(2, 'Mouse Logitech')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>BRG003</td>
+                            <td>Keyboard Mechanical</td>
+                            <td>Aksesoris</td>
+                            <td>8</td>
+                            <td>Unit</td>
+                            <td>Rp 500.000</td>
+                            <td>Rp 650.000</td>
+                            <td>Menipis</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-info" onclick="viewItem(3)" title="Lihat">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon btn-edit" onclick="editItem(3)" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete(3, 'Keyboard Mechanical')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>BRG004</td>
+                            <td>Monitor LG 24"</td>
+                            <td>Elektronik</td>
+                            <td>25</td>
+                            <td>Unit</td>
+                            <td>Rp 1.800.000</td>
+                            <td>Rp 2.200.000</td>
+                            <td>Aman</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-info" onclick="viewItem(4)" title="Lihat">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon btn-edit" onclick="editItem(4)" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete(4, 'Monitor LG 24')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>BRG005</td>
+                            <td>Headset Gaming</td>
+                            <td>Aksesoris</td>
+                            <td>0</td>
+                            <td>Unit</td>
+                            <td>Rp 300.000</td>
+                            <td>Rp 400.000</td>
+                            <td>Habis</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-info" onclick="viewItem(5)" title="Lihat">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon btn-edit" onclick="editItem(5)" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete(5, 'Headset Gaming')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <span class="pagination-info">Menampilkan 1-5 dari 5 data</span>
+                    <div class="pagination-buttons">
+                        <button class="btn-page" disabled>Previous</button>
+                        <button class="btn-page active">1</button>
+                        <button class="btn-page" disabled>Next</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Barangku. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal Delete Confirmation -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Konfirmasi Hapus</h3>
+                <span class="close" onclick="closeDeleteModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <i class="fas fa-exclamation-triangle warning-icon"></i>
+                <p>Apakah Anda yakin ingin menghapus barang <strong id="itemName"></strong>?</p>
+                <p class="warning-text">Data yang dihapus tidak dapat dikembalikan!</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeDeleteModal()">Batal</button>
+                <button class="btn-danger" onclick="deleteItem()">Hapus</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/barang.js"></script>
+</body>
+</html>

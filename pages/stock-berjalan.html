@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangku - Stock Berjalan</title>
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/stock-berjalan.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <i class="fas fa-home"></i>
+            <h1>BARANGKU</h1>
+        </div>
+        <div class="header-right">
+            <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+            <span>USER</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="home.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="barang.html" class="nav-item">
+                    <i class="fas fa-box"></i>
+                    <span>Barang</span>
+                </a>
+                <a href="stock-berjalan.html" class="nav-item active">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Stock Berjalan</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-tags"></i>
+                    <span>Kategori</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Laporan</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+            <button class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h2 class="page-title">Stock Berjalan</h2>
+                <button class="btn-primary" onclick="window.location.href='stock-berjalan-add.html'">
+                    <i class="fas fa-plus"></i> Tambah Stock Berjalan
+                </button>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Cari transaksi..." onkeyup="searchTable()">
+                </div>
+                <select class="filter-select" id="typeFilter" onchange="filterByType()">
+                    <option value="">Semua Tipe</option>
+                    <option value="Masuk">Barang Masuk</option>
+                    <option value="Keluar">Barang Keluar</option>
+                </select>
+                <select class="filter-select" id="statusFilter" onchange="filterByStatus()">
+                    <option value="">Semua Status</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Urgent">Urgent</option>
+                </select>
+                <input type="date" class="filter-date" id="dateFilter" onchange="filterByDate()">
+            </div>
+
+            <!-- Table -->
+            <div class="table-card">
+                <table class="data-table" id="stockTable">
+                    <thead>
+                        <tr>
+                            <th>ID TRANSAKSI</th>
+                            <th>NAMA BARANG</th>
+                            <th>TIPE</th>
+                            <th>QUANTITY</th>
+                            <th>SATUAN</th>
+                            <th>WAKTU</th>
+                            <th>TANGGAL</th>
+                            <th>AKSI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TRX001</td>
+                            <td>Laptop Asus ROG</td>
+                            <td><span class="badge badge-in">Masuk</span></td>
+                            <td>15 Unit</td>
+                            <td>Unit</td>
+                            <td>10:30 AM</td>
+                            <td>15/01/2025</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-info" onclick="viewItem('TRX001')" title="Lihat">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon btn-edit" onclick="editItem('TRX001')" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete('TRX001', 'Laptop Asus ROG')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>TRX002</td>
+                            <td>Mouse Logitech</td>
+                            <td><span class="badge badge-out">Keluar</span></td>
+                            <td>8 Unit</td>
+                            <td>Unit</td>
+                            <td>11:45 AM</td>
+                            <td>15/01/2025</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-info" onclick="viewItem('TRX002')" title="Lihat">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon btn-edit" onclick="editItem('TRX002')" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete('TRX002', 'Mouse Logitech')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>TRX003</td>
+                            <td>Keyboard Mechanical</td>
+                            <td><span class="badge badge-in">Masuk</span></td>
+                            <td>20 Unit</td>
+                            <td>Unit</td>
+                            <td>02:15 PM</td>
+                            <td>14/01/2025</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-info" onclick="viewItem('TRX003')" title="Lihat">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon btn-edit" onclick="editItem('TRX003')" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete('TRX003', 'Keyboard Mechanical')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>TRX004</td>
+                            <td>Monitor LG 24"</td>
+                            <td><span class="badge badge-out">Keluar</span></td>
+                            <td>5 Unit</td>
+                            <td>Unit</td>
+                            <td>03:30 PM</td>
+                            <td>14/01/2025</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-info" onclick="viewItem('TRX004')" title="Lihat">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon btn-edit" onclick="editItem('TRX004')" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete('TRX004', 'Monitor LG 24')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>TRX005</td>
+                            <td>Headset Gaming</td>
+                            <td><span class="badge badge-in">Masuk</span></td>
+                            <td>12 Unit</td>
+                            <td>Unit</td>
+                            <td>09:00 AM</td>
+                            <td>13/01/2025</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon btn-info" onclick="viewItem('TRX005')" title="Lihat">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon btn-edit" onclick="editItem('TRX005')" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="confirmDelete('TRX005', 'Headset Gaming')" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <span class="pagination-info">Menampilkan 1-5 dari 5 transaksi</span>
+                    <div class="pagination-buttons">
+                        <button class="btn-page" disabled>Previous</button>
+                        <button class="btn-page active">1</button>
+                        <button class="btn-page" disabled>Next</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Barangku. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal Delete Confirmation -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Konfirmasi Hapus</h3>
+                <span class="close" onclick="closeDeleteModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <i class="fas fa-exclamation-triangle warning-icon"></i>
+                <p>Apakah Anda yakin ingin menghapus transaksi <strong id="itemName"></strong>?</p>
+                <p class="warning-text">Data yang dihapus tidak dapat dikembalikan!</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeDeleteModal()">Batal</button>
+                <button class="btn-danger" onclick="deleteItem()">Hapus</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal View Details -->
+    <div id="viewModal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3>Detail Transaksi</h3>
+                <span class="close" onclick="closeViewModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <label>ID Transaksi:</label>
+                        <span id="detailId">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Nama Barang:</label>
+                        <span id="detailNama">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Tipe:</label>
+                        <span id="detailTipe">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Quantity:</label>
+                        <span id="detailQty">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Tanggal:</label>
+                        <span id="detailTanggal">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Waktu:</label>
+                        <span id="detailWaktu">-</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeViewModal()">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/stock-berjalan.js"></script>
+</body>
+</html>

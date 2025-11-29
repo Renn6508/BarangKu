@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangku - Tambah Stock Berjalan</title>
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/stock-berjalan-add.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <i class="fas fa-home"></i>
+            <h1>BARANGKU</h1>
+        </div>
+        <div class="header-right">
+            <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+            <span>USER</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="home.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="barang.html" class="nav-item">
+                    <i class="fas fa-box"></i>
+                    <span>Barang</span>
+                </a>
+                <a href="stock-berjalan.html" class="nav-item active">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Stock Berjalan</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-tags"></i>
+                    <span>Kategori</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Laporan</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+            <button class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h2 class="page-title">Tambah Stock Berjalan</h2>
+                <button class="btn-secondary" onclick="window.location.href='stock-berjalan.html'">
+                    <i class="fas fa-arrow-left"></i> Kembali
+                </button>
+            </div>
+
+            <!-- Form Container -->
+            <div class="form-container">
+                <form id="addStockForm" onsubmit="handleSubmit(event)">
+                    <div class="form-grid">
+                        <!-- Left Column -->
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label for="idTransaksi">ID Transaksi <span class="required">*</span></label>
+                                <input type="text" id="idTransaksi" name="idTransaksi" placeholder="Auto-generated" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tipeTransaksi">Tipe Transaksi <span class="required">*</span></label>
+                                <select id="tipeTransaksi" name="tipeTransaksi" required onchange="updateTipeIcon()">
+                                    <option value="">Pilih Tipe</option>
+                                    <option value="Masuk">Barang Masuk</option>
+                                    <option value="Keluar">Barang Keluar</option>
+                                </select>
+                                <div class="tipe-indicator" id="tipeIndicator"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="barang">Pilih Barang <span class="required">*</span></label>
+                                <select id="barang" name="barang" required onchange="updateBarangInfo()">
+                                    <option value="">Pilih Barang</option>
+                                    <option value="BRG001" data-stok="25" data-satuan="Unit">Laptop Asus ROG (Stok: 25)</option>
+                                    <option value="BRG002" data-stok="5" data-satuan="Unit">Mouse Logitech (Stok: 5)</option>
+                                    <option value="BRG003" data-stok="8" data-satuan="Unit">Keyboard Mechanical (Stok: 8)</option>
+                                    <option value="BRG004" data-stok="25" data-satuan="Unit">Monitor LG 24" (Stok: 25)</option>
+                                    <option value="BRG005" data-stok="0" data-satuan="Unit">Headset Gaming (Stok: 0)</option>
+                                </select>
+                            </div>
+
+                            <div class="stock-info" id="stockInfo">
+                                <div class="info-item">
+                                    <label>Stok Saat Ini:</label>
+                                    <span id="currentStock">-</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Satuan:</label>
+                                    <span id="currentSatuan">-</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="quantity">Quantity <span class="required">*</span></label>
+                                <input type="number" id="quantity" name="quantity" placeholder="Masukkan jumlah" min="1" required oninput="calculateNewStock()">
+                            </div>
+
+                            <div class="stock-preview" id="stockPreview">
+                                <div class="preview-item">
+                                    <label>Stok Setelah Transaksi:</label>
+                                    <span id="newStock" class="new-stock">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label for="tanggal">Tanggal <span class="required">*</span></label>
+                                <input type="date" id="tanggal" name="tanggal" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="waktu">Waktu <span class="required">*</span></label>
+                                <input type="time" id="waktu" name="waktu" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="referensi">Nomor Referensi</label>
+                                <input type="text" id="referensi" name="referensi" placeholder="Contoh: PO-001, SO-001">
+                                <small>Nomor PO (Purchase Order) atau SO (Sales Order)</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pihakTerkait">Pihak Terkait</label>
+                                <input type="text" id="pihakTerkait" name="pihakTerkait" placeholder="Nama supplier/customer">
+                                <small>Supplier untuk barang masuk, Customer untuk barang keluar</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lokasi">Lokasi</label>
+                                <input type="text" id="lokasi" name="lokasi" placeholder="Contoh: Gudang A, Rak 1">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="keterangan">Keterangan</label>
+                                <textarea id="keterangan" name="keterangan" rows="4" placeholder="Catatan tambahan..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Summary Section -->
+                    <div class="summary-section">
+                        <h3>Ringkasan Transaksi</h3>
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <i class="fas fa-box"></i>
+                                <div>
+                                    <label>Barang</label>
+                                    <span id="summaryBarang">-</span>
+                                </div>
+                            </div>
+                            <div class="summary-item">
+                                <i class="fas fa-exchange-alt"></i>
+                                <div>
+                                    <label>Tipe</label>
+                                    <span id="summaryTipe">-</span>
+                                </div>
+                            </div>
+                            <div class="summary-item">
+                                <i class="fas fa-sort-numeric-up"></i>
+                                <div>
+                                    <label>Quantity</label>
+                                    <span id="summaryQty">-</span>
+                                </div>
+                            </div>
+                            <div class="summary-item">
+                                <i class="fas fa-calendar"></i>
+                                <div>
+                                    <label>Tanggal & Waktu</label>
+                                    <span id="summaryDateTime">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="resetForm()">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i> Simpan Transaksi
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Barangku. All rights reserved.</p>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/stock-berjalan-add.js"></script>
+</body>
+</html>
