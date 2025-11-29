@@ -1,43 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="css/style.css" />
-
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+    <title>Login</title>
+    <link rel="stylesheet" href="css/auth.css" />
   </head>
-
   <body>
-    <nav>
-      <img src="img/barangku.png" class="logo"alt="" />
-    </nav>
-    <div class="dashboard-container">
-      <aside>
-        <div class="sidebar-menu">
-          <a href="index.html" class=""
-            ><i class="ri-dashboard-line"></i><span>Dashboard</span></a
-          >
-          <a href="inventory.html"
-            ><i class="ri-store-2-line"></i><span>Inventory</span></a
-          >
-          <a href="transactions.html"
-            ><i class="ri-exchange-dollar-line"></i
-            ><span>Transactions</span></a
-          >
-          <a href="reports.html"
-            ><i class="ri-file-chart-line"></i><span>Reports</span></a
-          >
-          <a href="settings.html"
-            ><i class="ri-settings-3-line"></i><span>Settings</span></a
-          >
+    <div class="card">
+      <h2>Login</h2>
+      <form>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Masukkan email Anda"
+            required
+          />
         </div>
-      </aside>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Masukkan password"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn"
+          onclick="window.location.href='pages/home.html'"
+        >
+          Masuk
+        </button>
+      </form>
+      <div class="footer-link">
+        Belum punya akun? <a href="register.html">Daftar sekarang</a>
+      </div>
     </div>
-    <script src="js/script.js"></script>
   </body>
 </html>
