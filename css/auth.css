@@ -244,7 +244,8 @@ body::before {
 
 .footer-text {
   text-align: center;
-  margin-top: 25px;
+  margin-top: 20px;
+  margin-bottom: 10px;
   font-size: 14px;
   color: #666;
 }
@@ -265,10 +266,12 @@ body::before {
 @media (max-width: 768px) {
   .auth-container {
     flex-direction: column;
+    max-height: none;
   }
   
   .auth-left {
     padding: 40px 30px;
+    min-height: auto;
   }
   
   .logo-icon {
@@ -280,16 +283,25 @@ body::before {
   }
   
   .auth-right {
-    padding: 40px 30px;
+    padding: 30px;
+    max-height: none;
   }
 }
 
 @media (max-width: 480px) {
   .auth-right {
-    padding: 30px 25px;
+    padding: 25px 20px;
   }
   
   .logo-text {
     font-size: 28px;
+  }
+  
+  .form-group {
+    margin-bottom: 14px;
+  }
+  
+  .form-group input {
+    padding: 10px 14px;
   }
 }

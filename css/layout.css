@@ -248,6 +248,29 @@ body {
   transform: scale(1.1);
 }
 
+.status-badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.status-badge.habis {
+  background: #ffe5e5;
+  color: #d32f2f;
+}
+
+.status-badge.menipis {
+  background: #fff4e5;
+  color: #f57c00;
+}
+
+.status-badge.aman {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
 /* Main Content */
 .main-content {
   margin-left: 220px;

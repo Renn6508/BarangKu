@@ -130,9 +130,9 @@ function showToast(message, type = 'success') {
 window.addEventListener('DOMContentLoaded', () => {
     // Simulate loading user data
     const userData = {
-        fullName: 'John Doe',
-        username: 'johndoe',
-        address: 'Jl. Contoh No. 123, Jakarta',
+        fullName: 'Wilhemina Lorenzia Wijaya',
+        username: 'lorenzia',
+        address: 'Jl. Contoh No. 123, Lumajang',
         role: 'Administrator',
         avatar: null
     };
